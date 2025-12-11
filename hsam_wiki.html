@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Hey Stop A Minute | Unofficial Lore Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <style>
+      :root {
+        --bg-primary: #f5f5f5;
+        --bg-secondary: #fff;
+        --bg-tertiary: #f8f9fa;
+        --bg-quaternary: #e9ecef;
+        --border-color: #dcdcdc;
+        --text-primary: #111;
+        --text-secondary: #555;
+        --link-color: #0645ad;
+        --notice-bg: #fff8e1;
+        --notice-border: #ffd65c;
+        --shadow: rgba(0, 0, 0, 0.08);
+      }
+
+      [data-theme="dark"] {
+        --bg-primary: #1a1a1a;
+        --bg-secondary: #2d2d2d;
+        --bg-tertiary: #3a3a3a;
+        --bg-quaternary: #404040;
+        --border-color: #555;
+        --text-primary: #e0e0e0;
+        --text-secondary: #aaa;
+        --link-color: #6ea8fe;
+        --notice-bg: #3d3310;
+        --notice-border: #806d2a;
+        --shadow: rgba(0, 0, 0, 0.3);
+      }
+
+      body {
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        margin: 0;
+        padding: 0;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      a {
+        color: var(--link-color);
+        text-decoration: none;
+      }
+      a:hover {
+        text-decoration: underline;
+      }
+
+      .theme-toggle {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: var(--bg-tertiary);
+        border: 1px solid var(--border-color);
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 8px var(--shadow);
+        transition: all 0.3s;
+        z-index: 1000;
+        padding: 0;
+      }
+
+      .theme-toggle img {
+        width: 28px;
+        height: 28px;
+        display: block;
+      }
+
+      .theme-toggle:hover {
+        transform: scale(1.1);
+      }
+
+      .page {
+        max-width: 1100px;
+        margin: 0 auto;
+        background: var(--bg-secondary);
+        padding: 1.5rem 2rem 3rem;
+        box-shadow: 0 0 6px var(--shadow);
+        box-sizing: border-box;
+      }
+
+      header {
+        border-bottom: 1px solid var(--border-color);
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+      }
+
+      header h1 {
+        font-size: 2rem;
+        margin: 0;
+      }
+
+      header .subtitle {
+        font-size: 0.95rem;
+        color: var(--text-secondary);
+        margin-top: 0.25rem;
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: minmax(0, 3fr) minmax(260px, 1fr);
+        gap: 1.5rem;
+      }
+
+      @media (max-width: 900px) {
+        .layout {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .infobox {
+        border: 1px solid var(--border-color);
+        background: var(--bg-tertiary);
+        font-size: 0.9rem;
+        float: right;
+      }
+
+      .infobox-image {
+        width: 100%;
+        display: block;
+        border-bottom: 1px solid var(--border-color);
+      }
+
+      .infobox table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      .infobox caption {
+        font-weight: bold;
+        padding: 0.4rem;
+        border-bottom: 1px solid var(--border-color);
+        background: var(--bg-quaternary);
+        text-align: center;
+        font-size: 0.95rem;
+      }
+
+      .infobox th,
+      .infobox td {
+        padding: 0.25rem 0.5rem;
+        vertical-align: top;
+      }
+
+      .infobox th {
+        width: 40%;
+        font-weight: 600;
+      }
+
+      h2 {
+        border-bottom: 1px solid var(--border-color);
+        font-size: 1.3rem;
+        margin-top: 1.4rem;
+        padding-bottom: 0.15rem;
+      }
+
+      h3 {
+        font-size: 1.05rem;
+        margin-top: 1.1rem;
+      }
+
+      p {
+        line-height: 1.6;
+        margin: 0.5rem 0;
+      }
+
+      .toc {
+        border: 1px solid var(--border-color);
+        background: var(--bg-tertiary);
+        padding: 0.8rem 1rem;
+        font-size: 0.9rem;
+        margin-bottom: 1rem;
+        display: inline-block;
+      }
+
+      .toc-title {
+        font-weight: bold;
+        margin-bottom: 0.4rem;
+      }
+
+      .toc ol {
+        margin: 0;
+        padding-left: 1.3rem;
+      }
+
+      .toc li {
+        margin: 0.1rem 0;
+      }
+
+      .small {
+        font-size: 0.85rem;
+        color: var(--text-secondary);
+      }
+
+      .notice {
+        border: 1px solid var(--notice-border);
+        background: var(--notice-bg);
+        padding: 0.6rem 0.8rem;
+        font-size: 0.9rem;
+        margin: 0.75rem 0 1.25rem;
+      }
+
+      footer {
+        border-top: 1px solid var(--border-color);
+        margin-top: 2rem;
+        padding-top: 0.75rem;
+        font-size: 0.8rem;
+        color: var(--text-secondary);
+      }
+    </style>
+  </head>
+  <body>
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+      <img src="light_mode.png" alt="Toggle theme" id="themeIcon" />
+    </button>
+    <main class="page">
+      <header>
+        <h1>Hey Stop A Minute</h1>
+        <div class="subtitle">
+          Unofficial article about the Trevor Henderson creature
+          <em>“Hey Stop A Minute”</em>.
+        </div>
+      </header>
+
+      <div class="layout">
+        <!-- Main content -->
+        <section>
+          <div class="notice">
+            <strong>Canon note:</strong> This page summarizes known information
+            about the creature based on Trevor Henderson’s original artwork.
+            Most details about its personality, abilities, and origin are
+            intentionally left unknown by the creator. Any clearly marked “fan
+            interpretations” are <em>not</em> official canon.
+          </div>
+
+          <nav class="toc" aria-label="Table of contents">
+            <div class="toc-title">Contents</div>
+            <ol>
+              <li><a href="#overview">Overview</a></li>
+              <li><a href="#appearance">Appearance</a></li>
+              <li><a href="#behavior">Behavior</a></li>
+              <li><a href="#abilities">Abilities</a></li>
+              <li><a href="#origin">Origin and context</a></li>
+              <li><a href="#in-fan-media">Presence in fan media</a></li>
+              <li>
+                <a href="#canon-status">Canon status and misinformation</a>
+              </li>
+            </ol>
+          </nav>
+
+          <section id="overview">
+            <h2>Overview</h2>
+            <p>
+              <strong>Hey Stop A Minute</strong> (commonly referred to as
+              <strong>“Hey Stop A Minute”</strong>) is a creature created by
+              Canadian horror artist <strong>Trevor Henderson</strong>. It
+              appears in a single, well-known image depicting a tall, eerie
+              humanoid form peering over a fence while calling out to an unseen
+              passerby.
+            </p>
+            <p>
+              The creature’s name is derived from the caption associated with
+              the artwork, in which it appears to say the phrase
+              <em>“hey stop a minute”</em>. Beyond this image and line of
+              dialogue, there is little to no officially released lore from the
+              creator, leaving the entity’s nature and intentions unclear.
+            </p>
+          </section>
+
+          <section id="appearance">
+            <h2>Appearance</h2>
+            <p>
+              In the original artwork, the entity is seen from behind a fence or
+              barrier, with only its upper body visible. Its exact height is not
+              specified, but it appears significantly taller than a human adult
+              based on the framing of the image.
+            </p>
+            <p>Key visual traits include:</p>
+            <ul>
+              <li>
+                A tall, lanky humanoid silhouette visible from the chest or
+                shoulders upward.
+              </li>
+              <li>A smooth, hairless head with dark or shadowy skin.</li>
+              <li>
+                Large, deep-set, and unnaturally dark eyes; one eye appears
+                larger than the other.
+              </li>
+              <li>
+                Dark nostrils and a mouth with an almost completely black
+                interior.
+              </li>
+              <li>
+                A partially obscured torso, with the lower body hidden behind
+                the fence, leaving its full shape unknown.
+              </li>
+            </ul>
+            <p>
+              Due to the limited view and stylized nature of the art, details
+              such as its exact proportions, limbs, or any non-human body
+              features remain ambiguous. Some fans have speculated that the body
+              may be distorted or animal-like, but such ideas are not supported
+              by direct canon.
+            </p>
+          </section>
+
+          <section id="behavior">
+            <h2>Behavior</h2>
+            <p>
+              The only clearly documented behavior of the creature is its act of
+              calling out to someone nearby with the phrase
+              <em>“hey stop a minute”</em>. This suggests that it is capable of
+              speech or vocal mimicry and is aware of a human presence beyond
+              the fence.
+            </p>
+            <p>
+              Since Henderson has not provided further description, its motives
+              are unclear. The call could be interpreted as:
+            </p>
+            <ul>
+              <li>a request for attention,</li>
+              <li>a lure to bring someone closer,</li>
+              <li>or a simple, unsettling greeting with unknown intent.</li>
+            </ul>
+            <p>
+              Any depictions of the creature chasing people, attacking them, or
+              exhibiting complex behavior patterns originate from fan media such
+              as videos and game modifications and are not part of official
+              lore.
+            </p>
+          </section>
+
+          <section id="abilities">
+            <h2>Abilities</h2>
+            <p>
+              No explicit supernatural abilities have been confirmed by the
+              creator. The artwork only implies:
+            </p>
+            <ul>
+              <li>
+                The creature possesses a voice or sound-producing ability.
+              </li>
+              <li>
+                It has enough awareness to address someone and request that they
+                stop.
+              </li>
+            </ul>
+            <p>
+              Popular fan portrayals often assign additional powers—such as high
+              speed, physical strength, teleportation, or reality distortion—to
+              fit horror gameplay or narrative needs. These abilities, while
+              common in community content, should be treated as
+              <strong>non-canonical</strong>.
+            </p>
+          </section>
+
+          <section id="origin">
+            <h2>Origin and context</h2>
+            <p>
+              As with many of Trevor Henderson’s creations,
+              <em>Hey Stop A Minute</em> has no publicly detailed origin story.
+              There is no official information about:
+            </p>
+            <ul>
+              <li>where it came from,</li>
+              <li>whether it was once human,</li>
+              <li>its age or “birth,”</li>
+              <li>or its purpose or goals.</li>
+            </ul>
+            <p>
+              The image uses a familiar, almost mundane environment (a simple
+              fence and background), combined with an unnatural figure, evoking
+              a liminal-horror feeling: something wrong appearing in an
+              otherwise ordinary scene.
+            </p>
+          </section>
+
+          <section id="in-fan-media">
+            <h2>Presence in fan media</h2>
+            <p>
+              Despite having very little official lore, the creature has gained
+              notable popularity in fan communities, especially through
+              <strong>Garry’s Mod</strong> and other sandbox games. It
+              frequently appears as:
+            </p>
+            <ul>
+              <li>a nextbot or scripted NPC that chases players,</li>
+              <li>a horror-themed antagonist in custom maps or videos,</li>
+              <li>
+                a background cryptid in compilation-style “Trevor Henderson
+                creatures” videos.
+              </li>
+            </ul>
+            <p>
+              These portrayals often expand its size, speed, and aggressiveness
+              to create more dramatic or frightening scenarios. While such
+              depictions are widely viewed, they represent community-driven
+              interpretation rather than official characterization.
+            </p>
+          </section>
+
+          <section id="canon-status">
+            <h2>Canon status and misinformation</h2>
+            <p>
+              Due to the open nature of fan wikis and community edits, various
+              pieces of misinformation have appeared online regarding
+              <em>Hey Stop A Minute</em>. These can include claims about:
+            </p>
+            <ul>
+              <li>its “gender” or “sexuality,”</li>
+              <li>specific birthdays (such as real-world dates),</li>
+              <li>extensive personality profiles,</li>
+              <li>detailed power sets or combat feats.</li>
+            </ul>
+            <p>
+              There is no evidence that Trevor Henderson has assigned the
+              creature a gender identity, sexuality, exact birthday, or personal
+              relationships. Such details should be considered either headcanon
+              or vandalism on editable wikis, not accepted canon.
+            </p>
+            <p>In summary, canon information about the entity is limited to:</p>
+            <ul>
+              <li>its visual design as seen in the original artwork,</li>
+              <li>its position behind a fence,</li>
+              <li>
+                and the phrase “hey stop a minute,” directed at someone
+                off-screen.
+              </li>
+            </ul>
+          </section>
+        </section>
+
+        <!-- Infobox -->
+        <aside class="infobox" aria-label="Creature infobox">
+          <img src="hsam.png" alt="Hey Stop A Minute" class="infobox-image" />
+          <table>
+            <caption>
+              Hey Stop A Minute
+            </caption>
+            <tr>
+              <th>Type</th>
+              <td>Liminal humanoid cryptid</td>
+            </tr>
+            <tr>
+              <th>Creator</th>
+              <td>Trevor Henderson</td>
+            </tr>
+            <tr>
+              <th>First appearance</th>
+              <td>Single horror artwork (date not publicly specified)</td>
+            </tr>
+            <tr>
+              <th>Also known as</th>
+              <td><em>Hey Stop A Minute</em></td>
+            </tr>
+            <tr>
+              <th>Alignment</th>
+              <td>Unknown</td>
+            </tr>
+            <tr>
+              <th>Canon powers</th>
+              <td>Speech / vocalization</td>
+            </tr>
+            <tr>
+              <th>Motivation</th>
+              <td>Unknown; calls out to passersby</td>
+            </tr>
+            <tr>
+              <th>Species</th>
+              <td>Unclassified entity</td>
+            </tr>
+            <tr>
+              <th>Origin</th>
+              <td>Not disclosed by creator</td>
+            </tr>
+            <tr>
+              <th>Notable quote</th>
+              <td><em>“hey stop a minute”</em></td>
+            </tr>
+          </table>
+        </aside>
+      </div>
+
+      <footer>
+        <p class="small">
+          This is an unofficial, fan-made page intended to summarize known canon
+          and distinguish it from fan interpretation. It is not affiliated with
+          or endorsed by Trevor Henderson.
+        </p>
+      </footer>
+    </main>
+    <script>
+      const themeToggle = document.getElementById("themeToggle");
+      const themeIcon = document.getElementById("themeIcon");
+      const html = document.documentElement;
+
+      // Check for saved theme preference or default to light mode
+      const currentTheme = localStorage.getItem("theme") || "light";
+      if (currentTheme === "dark") {
+        html.setAttribute("data-theme", "dark");
+        themeIcon.src = "dark_mode.png";
+      }
+
+      themeToggle.addEventListener("click", function () {
+        const theme = html.getAttribute("data-theme");
+        if (theme === "dark") {
+          html.removeAttribute("data-theme");
+          themeIcon.src = "light_mode.png";
+          localStorage.setItem("theme", "light");
+        } else {
+          html.setAttribute("data-theme", "dark");
+          themeIcon.src = "dark_mode.png";
+          localStorage.setItem("theme", "dark");
+        }
+      });
+    </script>
+  </body>
+</html>
